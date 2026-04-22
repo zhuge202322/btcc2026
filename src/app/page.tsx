@@ -204,10 +204,10 @@ export default function Home() {
           {isMobileMenuOpen && (
             <div className="absolute top-14 left-0 w-full bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl z-50 flex flex-col gap-4 md:hidden">
               {[
-                { id: 'market', label: 'K线行情' },
-                { id: 'airdrop', label: '空投雷达' },
-                { id: 'whale', label: '鲸鱼动态' },
-                { id: 'tools', label: '工具箱' }
+                { id: 'market', label: 'Charts' },
+                { id: 'airdrop', label: 'Airdrops' },
+                { id: 'whale', label: 'Whales' },
+                { id: 'tools', label: 'Tools' }
               ].map(tab => (
                 <button 
                   key={tab.id}
