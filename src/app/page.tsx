@@ -67,9 +67,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Init language
-    const currentLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
-    setLang(currentLang);
+    // Force English language
+    setLang('en');
 
     // Init CheckIn
     const checkInData = JSON.parse(localStorage.getItem('web3_checkin_v6') || '{"count":0,"last":0}');
@@ -83,8 +82,8 @@ export default function Home() {
       })
       .catch(console.error);
 
-    // Modal timeout
-    const timer = setTimeout(() => setShowModal(true), 2500);
+    // Modal timeout (8 seconds)
+    const timer = setTimeout(() => setShowModal(true), 8000);
     
     return () => clearTimeout(timer);
   }, []);
