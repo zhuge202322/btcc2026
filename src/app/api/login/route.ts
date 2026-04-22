@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { kv } from '@vercel/kv';
 import fs from 'fs';
 import path from 'path';
 
@@ -8,7 +9,16 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     let actualPassword = 'admin123';
-    if (fs.existsSync(dataFilePath)) {
+    
+    // Check Vercel KV first
+    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+      const data: any = await kv.get('app_config');
+      if (data && data.adminPassword) {
+        actualPassword = data.adminPassword;
+      }
+    } 
+    // Fallback to local file
+    else if (fs.existsSync(dataFilePath)) {
       try {
         const raw = fs.readFileSync(dataFilePath, 'utf-8');
         if (raw.trim()) {
