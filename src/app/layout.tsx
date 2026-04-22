@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "InsiderCoinClub - 全球加密行情看板",
-  description: "Web3 交易、行情看板、鲸鱼动态",
+  title: "InsiderCoinClub - Global Crypto Dashboard",
+  description: "Web3 Trading, Charts, and Whale Tracker",
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <body className="antialiased">
         {children}
       </body>

@@ -171,10 +171,10 @@ export default function Home() {
           
           <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
             {[
-              { id: 'market', label: 'K线行情' },
-              { id: 'airdrop', label: '空投雷达' },
-              { id: 'whale', label: '鲸鱼动态' },
-              { id: 'tools', label: '工具箱' }
+              { id: 'market', label: 'Charts' },
+              { id: 'airdrop', label: 'Airdrops' },
+              { id: 'whale', label: 'Whales' },
+              { id: 'tools', label: 'Tools' }
             ].map(tab => (
               <button 
                 key={tab.id}
@@ -189,7 +189,7 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-4">
             <button onClick={handleConnectWallet} className="bg-indigo-600 hover:bg-indigo-500 px-6 py-2 rounded-full text-sm font-semibold transition shadow-lg shadow-indigo-500/20 flex items-center gap-2">
               <Wallet size={16} />
-              {walletAddress ? walletAddress : '连接钱包'}
+              {walletAddress ? walletAddress : 'Connect Wallet'}
             </button>
           </div>
 
@@ -219,7 +219,7 @@ export default function Home() {
               ))}
               <button onClick={() => { handleConnectWallet(); setIsMobileMenuOpen(false); }} className="bg-indigo-600 hover:bg-indigo-500 w-full py-3 rounded-full text-sm font-semibold transition shadow-lg shadow-indigo-500/20 flex justify-center items-center gap-2 mt-2">
                 <Wallet size={16} />
-                {walletAddress ? walletAddress : '连接钱包'}
+                {walletAddress ? walletAddress : 'Connect Wallet'}
               </button>
             </div>
           )}
@@ -229,7 +229,7 @@ export default function Home() {
           {/* 左侧：热门资产列表 */}
           <aside className="lg:col-span-3 order-2 lg:order-1 space-y-4">
             <div className="glass-card rounded-2xl p-4">
-              <h3 className="text-sm font-bold text-slate-400 mb-4 px-2 uppercase tracking-wider">实时行情</h3>
+              <h3 className="text-sm font-bold text-slate-400 mb-4 px-2 uppercase tracking-wider">Live Market</h3>
               <div id="crypto-list" className="space-y-1 overflow-y-auto max-h-[400px] pr-1">
                 {COINS_CONFIG.map(coin => {
                   const pData = prices[coin.symbol] || { price: '--', change: '+0.00', isUp: true };
@@ -262,10 +262,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 签到引流模块 */}
+            {/* Check-in Module */}
             <section className="glass-card rounded-2xl p-5 border-t-2 border-indigo-500/50">
               <h3 className="text-sm font-bold mb-3 flex items-center gap-2 text-yellow-400">
-                <span>🎁</span> 签到领 {contactConfig.checkInReward || '1'} USDT，签到后添加客服可以免费领取USDT！
+                <span>🎁</span> Check in for {contactConfig.checkInReward || '1'} USDT! Contact support to claim.
               </h3>
               <div className="grid grid-cols-4 gap-2 mb-4">
                 {[1,2,3,4,5,6,7].map(day => (
@@ -278,7 +278,7 @@ export default function Home() {
                 onClick={handleCheckIn} 
                 className="w-full bg-indigo-600 hover:bg-indigo-500 py-2 rounded-xl text-xs font-bold transition"
               >
-                立即签到
+                Check In Now
               </button>
             </section>
           </aside>
@@ -301,24 +301,24 @@ export default function Home() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="glass-card rounded-2xl p-6">
-                    <p className="text-xs text-slate-500 mb-2 uppercase tracking-wider">市场情绪 (F&G)</p>
+                    <p className="text-xs text-slate-500 mb-2 uppercase tracking-wider">Market Sentiment (F&G)</p>
                     <div className="flex items-center gap-4">
                       <div className="text-2xl font-bold text-indigo-400">68</div>
                       <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
                         <div className="h-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500" style={{ width: '68%' }}></div>
                       </div>
-                      <span className="text-xs text-green-400">贪婪</span>
+                      <span className="text-xs text-green-400">Greed</span>
                     </div>
                   </div>
                   <div className="glass-card rounded-2xl p-6">
-                    <p className="text-xs text-slate-500 mb-2 uppercase tracking-wider">24H 爆仓统计</p>
+                    <p className="text-xs text-slate-500 mb-2 uppercase tracking-wider">24H Liquidations</p>
                     <div className="text-2xl font-bold text-red-400">$128.42M</div>
-                    <p className="text-[10px] text-slate-500 mt-1">多单爆仓占 64%</p>
+                    <p className="text-[10px] text-slate-500 mt-1">Longs: 64%</p>
                   </div>
                   <div onClick={() => contactConfig.groupLink ? window.open(contactConfig.groupLink, '_blank') : setShowModal(true)} className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 relative overflow-hidden group cursor-pointer">
                     <div className="relative z-10">
-                      <h3 className="font-bold mb-1 italic">Web3 VIP 策略群 ↗</h3>
-                      <p className="text-[10px] text-indigo-100">今日已捕捉 12 个异动信号</p>
+                      <h3 className="font-bold mb-1 italic">Web3 VIP Signals ↗</h3>
+                      <p className="text-[10px] text-indigo-100">12 anomaly signals caught today</p>
                     </div>
                     <div className="absolute -right-2 -bottom-2 text-6xl opacity-20 group-hover:scale-110 transition">💎</div>
                   </div>
@@ -328,19 +328,19 @@ export default function Home() {
 
             {activeTab === 'airdrop' && (
               <div className="glass-card rounded-3xl p-6 animate-pop">
-                <h2 className="text-2xl font-bold mb-6">空投雷达 Airdrop Radar</h2>
+                <h2 className="text-2xl font-bold mb-6">Airdrop Radar</h2>
                 <div className="space-y-4">
                   <div className="bg-slate-800/50 p-4 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-slate-700/50 hover:border-indigo-500/30 transition">
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center font-bold text-lg shadow-lg shadow-purple-500/20">zk</div>
                       <div>
                         <h4 className="font-bold text-base">zkSync Era</h4>
-                        <p className="text-xs text-slate-400 mt-1">L2 Rollup 龙头 - 快照预计第四季度</p>
+                        <p className="text-xs text-slate-400 mt-1">Top L2 Rollup - Snapshot expected Q4</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 w-full md:w-auto">
-                      <span className="text-[10px] font-mono text-orange-400 bg-orange-400/10 border border-orange-400/20 px-2 py-1 rounded">极高潜力</span>
-                      <button onClick={() => setShowModal(true)} className="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-xl text-xs font-bold transition ml-auto shadow-lg shadow-indigo-500/20">获取教程</button>
+                      <span className="text-[10px] font-mono text-orange-400 bg-orange-400/10 border border-orange-400/20 px-2 py-1 rounded">High Potential</span>
+                      <button onClick={() => setShowModal(true)} className="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-xl text-xs font-bold transition ml-auto shadow-lg shadow-indigo-500/20">Get Guide</button>
                     </div>
                   </div>
                   <div className="bg-slate-800/50 p-4 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-slate-700/50 hover:border-indigo-500/30 transition">
@@ -348,12 +348,12 @@ export default function Home() {
                       <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center font-bold text-lg shadow-lg shadow-blue-500/20">L0</div>
                       <div>
                         <h4 className="font-bold text-base">LayerZero</h4>
-                        <p className="text-xs text-slate-400 mt-1">全链互操作性协议 - 持续交互追踪中</p>
+                        <p className="text-xs text-slate-400 mt-1">Omnichain Protocol - Tracking active interactions</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 w-full md:w-auto">
-                      <span className="text-[10px] font-mono text-green-400 bg-green-400/10 border border-green-400/20 px-2 py-1 rounded">确认发币</span>
-                      <button onClick={() => setShowModal(true)} className="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-xl text-xs font-bold transition ml-auto shadow-lg shadow-indigo-500/20">获取教程</button>
+                      <span className="text-[10px] font-mono text-green-400 bg-green-400/10 border border-green-400/20 px-2 py-1 rounded">Confirmed</span>
+                      <button onClick={() => setShowModal(true)} className="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-xl text-xs font-bold transition ml-auto shadow-lg shadow-indigo-500/20">Get Guide</button>
                     </div>
                   </div>
                   <div className="bg-slate-800/50 p-4 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-slate-700/50 hover:border-indigo-500/30 transition">
@@ -361,12 +361,12 @@ export default function Home() {
                       <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black text-lg shadow-lg shadow-yellow-500/20">M</div>
                       <div>
                         <h4 className="font-bold text-base">MetaMask</h4>
-                        <p className="text-xs text-slate-400 mt-1">去中心化钱包 - 建议埋伏 Swap 交互</p>
+                        <p className="text-xs text-slate-400 mt-1">Decentralized Wallet - Swap interactions recommended</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 w-full md:w-auto">
-                      <span className="text-[10px] font-mono text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2 py-1 rounded">早期埋伏</span>
-                      <button onClick={() => setShowModal(true)} className="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-xl text-xs font-bold transition ml-auto shadow-lg shadow-indigo-500/20">获取教程</button>
+                      <span className="text-[10px] font-mono text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2 py-1 rounded">Early Stage</span>
+                      <button onClick={() => setShowModal(true)} className="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-xl text-xs font-bold transition ml-auto shadow-lg shadow-indigo-500/20">Get Guide</button>
                     </div>
                   </div>
                 </div>
@@ -375,58 +375,58 @@ export default function Home() {
 
             {activeTab === 'whale' && (
               <div className="glass-card rounded-3xl p-6 animate-pop">
-                <h2 className="text-2xl font-bold mb-6">鲸鱼动态 Whale Tracker</h2>
+                <h2 className="text-2xl font-bold mb-6">Whale Tracker</h2>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm min-w-[600px]">
                     <thead>
                       <tr className="text-slate-400 border-b border-slate-700/50">
-                        <th className="pb-4 font-medium px-2">时间</th>
-                        <th className="pb-4 font-medium px-2">资产</th>
-                        <th className="pb-4 font-medium px-2">金额</th>
-                        <th className="pb-4 font-medium px-2">流向</th>
-                        <th className="pb-4 font-medium px-2 text-right">操作</th>
+                        <th className="pb-4 font-medium px-2">Time</th>
+                        <th className="pb-4 font-medium px-2">Asset</th>
+                        <th className="pb-4 font-medium px-2">Amount</th>
+                        <th className="pb-4 font-medium px-2">Flow</th>
+                        <th className="pb-4 font-medium px-2 text-right">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-700/50">
                       <tr className="hover:bg-indigo-500/5 transition">
-                        <td className="py-5 px-2 text-slate-300">10 分钟前</td>
+                        <td className="py-5 px-2 text-slate-300">10 mins ago</td>
                         <td className="py-5 px-2 font-bold text-orange-400">BTC</td>
                         <td className="py-5 px-2 font-mono">1,200 ($78.4M)</td>
                         <td className="py-5 px-2 text-red-400 flex items-center gap-2">
-                          <span className="truncate max-w-[100px]" title="未知钱包">未知钱包</span>
+                          <span className="truncate max-w-[100px]" title="Unknown">Unknown</span>
                           <span>➔</span>
                           <span className="font-bold">Binance</span>
                         </td>
                         <td className="py-5 px-2 text-right"><button className="text-indigo-400 hover:text-indigo-300 text-xs font-medium border border-indigo-500/30 px-3 py-1 rounded-lg">Tx Hash</button></td>
                       </tr>
                       <tr className="hover:bg-indigo-500/5 transition">
-                        <td className="py-5 px-2 text-slate-300">15 分钟前</td>
+                        <td className="py-5 px-2 text-slate-300">15 mins ago</td>
                         <td className="py-5 px-2 font-bold text-indigo-400">ETH</td>
                         <td className="py-5 px-2 font-mono">15,000 ($34.1M)</td>
                         <td className="py-5 px-2 text-green-400 flex items-center gap-2">
                           <span className="font-bold">Coinbase</span>
                           <span>➔</span>
-                          <span className="truncate max-w-[100px]" title="未知钱包">未知钱包</span>
+                          <span className="truncate max-w-[100px]" title="Unknown">Unknown</span>
                         </td>
                         <td className="py-5 px-2 text-right"><button className="text-indigo-400 hover:text-indigo-300 text-xs font-medium border border-indigo-500/30 px-3 py-1 rounded-lg">Tx Hash</button></td>
                       </tr>
                       <tr className="hover:bg-indigo-500/5 transition">
-                        <td className="py-5 px-2 text-slate-300">1 小时前</td>
+                        <td className="py-5 px-2 text-slate-300">1 hr ago</td>
                         <td className="py-5 px-2 font-bold text-teal-400">USDT</td>
                         <td className="py-5 px-2 font-mono">50,000,000</td>
                         <td className="py-5 px-2 text-green-400 flex items-center gap-2">
                           <span className="font-bold">Tether</span>
                           <span>➔</span>
-                          <span className="truncate max-w-[100px]" title="未知钱包">未知钱包</span>
+                          <span className="truncate max-w-[100px]" title="Unknown">Unknown</span>
                         </td>
                         <td className="py-5 px-2 text-right"><button className="text-indigo-400 hover:text-indigo-300 text-xs font-medium border border-indigo-500/30 px-3 py-1 rounded-lg">Tx Hash</button></td>
                       </tr>
                       <tr className="hover:bg-indigo-500/5 transition">
-                        <td className="py-5 px-2 text-slate-300">2 小时前</td>
+                        <td className="py-5 px-2 text-slate-300">2 hrs ago</td>
                         <td className="py-5 px-2 font-bold text-purple-400">SOL</td>
                         <td className="py-5 px-2 font-mono">250,000 ($28.5M)</td>
                         <td className="py-5 px-2 text-red-400 flex items-center gap-2">
-                          <span className="truncate max-w-[100px]" title="未知钱包">未知钱包</span>
+                          <span className="truncate max-w-[100px]" title="Unknown">Unknown</span>
                           <span>➔</span>
                           <span className="font-bold">Kraken</span>
                         </td>
@@ -440,31 +440,31 @@ export default function Home() {
 
             {activeTab === 'tools' && (
               <div className="glass-card rounded-3xl p-6 animate-pop">
-                <h2 className="text-2xl font-bold mb-6">Web3 工具箱 Toolbox</h2>
+                <h2 className="text-2xl font-bold mb-6">Web3 Toolbox</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition cursor-pointer group">
                     <div className="text-3xl mb-3 group-hover:scale-110 transition origin-left inline-block">⛽</div>
-                    <h4 className="font-bold text-lg mb-1">Gas 追踪器</h4>
-                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">实时监控以太坊网络及各大 L2 的 Gas 费用波动，帮助您在最佳时机发送交易，节省高昂的手续费。</p>
-                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">使用工具 <span className="group-hover:translate-x-1 transition">➔</span></button>
+                    <h4 className="font-bold text-lg mb-1">Gas Tracker</h4>
+                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">Monitor Ethereum and major L2s gas fees in real-time to optimize your transaction timings and save on high gas fees.</p>
+                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">Use Tool <span className="group-hover:translate-x-1 transition">➔</span></button>
                   </div>
                   <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition cursor-pointer group">
                     <div className="text-3xl mb-3 group-hover:scale-110 transition origin-left inline-block">🧮</div>
-                    <h4 className="font-bold text-lg mb-1">无常损失计算器</h4>
-                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">一键计算提供 DEX 流动性 (LP) 时的潜在无常损失，对比持有单币的收益率，为挖矿决策提供数据支撑。</p>
-                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">使用工具 <span className="group-hover:translate-x-1 transition">➔</span></button>
+                    <h4 className="font-bold text-lg mb-1">Impermanent Loss Calculator</h4>
+                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">Calculate potential IL when providing DEX liquidity (LP) and compare with holding yields to support your yield farming decisions.</p>
+                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">Use Tool <span className="group-hover:translate-x-1 transition">➔</span></button>
                   </div>
                   <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition cursor-pointer group">
                     <div className="text-3xl mb-3 group-hover:scale-110 transition origin-left inline-block">🔐</div>
-                    <h4 className="font-bold text-lg mb-1">授权取消 (Revoke)</h4>
-                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">检查您的钱包地址历史授权记录，并一键取消过期或可疑合约的代币无限授权，保障资产安全。</p>
-                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">使用工具 <span className="group-hover:translate-x-1 transition">➔</span></button>
+                    <h4 className="font-bold text-lg mb-1">Token Approval Revoke</h4>
+                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">Check historical token approvals and revoke risky or unlimited permissions from expired contracts with one click.</p>
+                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">Use Tool <span className="group-hover:translate-x-1 transition">➔</span></button>
                   </div>
                   <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition cursor-pointer group">
                     <div className="text-3xl mb-3 group-hover:scale-110 transition origin-left inline-block">🛡️</div>
-                    <h4 className="font-bold text-lg mb-1">代币安全检测</h4>
-                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">自动扫描智能合约代码，一键识别貔貅盘 (Honeypot)、增发漏洞及后门风险，预防冲土狗被骗。</p>
-                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">使用工具 <span className="group-hover:translate-x-1 transition">➔</span></button>
+                    <h4 className="font-bold text-lg mb-1">Token Scanner</h4>
+                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">Automatically scan smart contracts for honeypots, mint vulnerabilities, and backdoor risks to avoid being scammed.</p>
+                    <button className="text-xs font-bold text-indigo-400 group-hover:text-indigo-300 flex items-center gap-1">Use Tool <span className="group-hover:translate-x-1 transition">➔</span></button>
                   </div>
                 </div>
               </div>
